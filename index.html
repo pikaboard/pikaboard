@@ -1475,11 +1475,7 @@ $(function() {
         url: 'https://pikaboard.altervista.org/hello-pika.php',
         type: "post",
         success: function(data, textStatus, jqXHR) {            
-<<<<<<< HEAD
-            alert(data.message);
-=======
             alert(data + " - " + textStatus);
->>>>>>> Alert message box
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
