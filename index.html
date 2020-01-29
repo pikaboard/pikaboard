@@ -1141,8 +1141,8 @@
 $(function() {
      $.ajax({
         url: 'https://pikaboard.altervista.org/hello-pika.php',
-        crossDomain: true,
         type: "post",
+        beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', '*');},        
         success: function(data, textStatus, jqXHR) {            
             console.log("ESITO OK: " + data + " - " + textStatus);
         },
