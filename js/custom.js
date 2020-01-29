@@ -56,6 +56,7 @@ $(window).on('load', function(){
 		$.vegas('slideshow', {
 			delay: 25000,
 			backgrounds:[
+				{ src:'https://media.istockphoto.com/photos/connect-by-phone-at-the-wedding-picture-id501456296', fade:5000 },
 				{ src:'./images/blur_background.jpg', fade:5000 },
 				{ src:'./images/blur_background2.jpg', fade:5000 }
 			],
