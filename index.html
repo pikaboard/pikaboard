@@ -1143,7 +1143,7 @@
 $(function() {
 
 	$.ajax({
-        url: 'https://pikaboard.altervista.org/hello-pika.php',
+        url: 'https://cors-anywhere.herokuapp.com/https://pikaboard.altervista.org/hello-pika.php',
         type: "get",        
         success: function(data, textStatus, jqXHR) {            
             console.log("ESITO OK: " + data + " - " + textStatus);
