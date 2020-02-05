@@ -1139,7 +1139,28 @@
 
 <script>
 $(function() {
-     $.ajax({
+	$.ajax({
+        url: 'https://pikaboard.altervista.org/hello-pika.php',
+        type: "post",
+        beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', 'X-Custom-Header');},        
+        success: function(data, textStatus, jqXHR) {            
+            console.log("ESITO OK: " + data + " - " + textStatus);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("ERROR: " + jqXHR.responseText);
+            console.log('jqXHR:');
+            console.log(jqXHR);
+            console.log('textStatus:');
+            console.log(textStatus);
+            console.log('errorThrown:');
+            console.log(errorThrown);
+        },
+        complete: function() {
+            console.log('Fine chiamata');
+        }       
+    });
+
+    /* $.ajax({
         url: 'https://pikaboard.altervista.org/hello-pika.php',
         type: "post",
         beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', '*');},        
@@ -1158,7 +1179,7 @@ $(function() {
         complete: function() {
             console.log('Fine chiamata');
         }       
-    });
+    });*/
 });
 </script>
 
