@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
+<!-- Version 0.0.1 -->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
@@ -1139,6 +1141,8 @@
 
 <script>
 $(function() {
+
+	/*
 	$.ajax({
         url: 'https://pikaboard.altervista.org/hello-pika.php',
         type: "post",
@@ -1159,6 +1163,28 @@ $(function() {
             console.log('Fine chiamata');
         }       
     });
+    */
+
+	$.ajax({
+        url: 'https://pikaboard.altervista.org/hello-pika.php',
+        type: "get",        
+        success: function(data, textStatus, jqXHR) {            
+            console.log("ESITO OK: " + data + " - " + textStatus);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("ERROR: " + jqXHR.responseText);
+            console.log('jqXHR:');
+            console.log(jqXHR);
+            console.log('textStatus:');
+            console.log(textStatus);
+            console.log('errorThrown:');
+            console.log(errorThrown);
+        },
+        complete: function() {
+            console.log('Fine chiamata');
+        }       
+    });
+
 
     /* $.ajax({
         url: 'https://pikaboard.altervista.org/hello-pika.php',
