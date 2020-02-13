@@ -574,7 +574,7 @@
 
                                 <input id="email_newsletter" type="email" name="nf_email" placeholder="Enter Your Email Address" />  
 
-                                <input type="submit" value="GET STARTED!" id="submit-button-newsletter" />
+                                <input type="button" value="Invia" id="submit-button-newsletter" />
 
                             </form>
                             <!--end newsletter-form -->
@@ -1137,52 +1137,49 @@
 <script src="js/wow.js"></script>
 <script src="js/jquery.vegas.js"></script>
 <script src="js/plugins.js"></script>
+<script src="js/detect-browser.js"></script>
 <script src="js/custom.js"></script>
 
 <script>
 $(function() {
 
-	$.ajax({
-        url: 'https://cors-anywhere.herokuapp.com/https://pikaboard.altervista.org/hello-pika.php',
-        type: "get",        
-        success: function(data, textStatus, jqXHR) {            
-            console.log("ESITO OK: " + data + " - " + textStatus);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("ERROR: " + jqXHR.responseText);
-            console.log('jqXHR:');
-            console.log(jqXHR);
-            console.log('textStatus:');
-            console.log(textStatus);
-            console.log('errorThrown:');
-            console.log(errorThrown);
-        },
-        complete: function() {
-            console.log('Fine chiamata');
-        }       
-    });
+	// Proxy url
+	var proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
+	// Invio newsletter
+	$("#submit-button-newsletter").click(function() {
+		var email = $("#email_newsletter").val();
+		inviaEmailNewsletter(email);
+	});
 
-    /* $.ajax({
-        url: 'https://pikaboard.altervista.org/hello-pika.php',
-        type: "post",
-        beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', '*');},        
-        success: function(data, textStatus, jqXHR) {            
-            console.log("ESITO OK: " + data + " - " + textStatus);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("ERROR: " + jqXHR.responseText);
-            console.log('jqXHR:');
-            console.log(jqXHR);
-            console.log('textStatus:');
-            console.log(textStatus);
-            console.log('errorThrown:');
-            console.log(errorThrown);
-        },
-        complete: function() {
-            console.log('Fine chiamata');
-        }       
-    });*/
+    function inviaEmailNewsletter(email) {
+		var browserInfo = getBrowser();
+		var datiMittente = {"email": email, "browser": browserInfo};
+
+    	$.ajax({
+	        url: proxyUrl + 'https://pikaboard.altervista.org/hello-pika.php',
+	        type: "POST",     
+	        contentType: "application/json; charset=utf-8",   
+	        dataType: "json",
+	        data: JSON.stringify({ datiMittente }),
+	        success: function(data, textStatus, jqXHR) {            
+	            console.log("ESITO OK: " + data + " - " + textStatus);
+	        },
+	        error: function(jqXHR, textStatus, errorThrown) {
+	            console.log("ERROR: " + jqXHR.responseText);
+	            console.log('jqXHR:');
+	            console.log(jqXHR);
+	            console.log('textStatus:');
+	            console.log(textStatus);
+	            console.log('errorThrown:');
+	            console.log(errorThrown);
+	        },
+	        complete: function() {
+	            console.log('Fine chiamata');
+	        }       
+	    });	
+    }
+
 });
 </script>
 
